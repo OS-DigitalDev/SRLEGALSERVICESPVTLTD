@@ -4,7 +4,6 @@ import cors from "cors";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import Contact from "./models/contact.js"; // <-- changed to capitalized
-
 dotenv.config();
 
 const app = express();
