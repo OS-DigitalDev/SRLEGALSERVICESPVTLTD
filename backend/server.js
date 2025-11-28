@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-import Contact from "./models/contact.js"; // <-- changed to capitalized
+import Contact from "../backend/models/contact.js"; // <-- changed to capitalized
 dotenv.config();
 
 const app = express();
