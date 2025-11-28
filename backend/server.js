@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-import contact from "./models/contact.js";
+import Contact from "./models/contact.js"; // <-- changed to capitalized
 
 dotenv.config();
 
@@ -23,15 +23,15 @@ app.post("/api/contact", async (req, res) => {
 
   try {
     // Save message in DB
-    const contact = new Contact({ name, email, subject, message });
-    await contact.save();
+    const newContact = new Contact({ name, email, subject, message });
+    await newContact.save();
 
     // Send email
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // App password, not normal Gmail password
+        pass: process.env.EMAIL_PASS,
       },
     });
 
@@ -56,4 +56,5 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
